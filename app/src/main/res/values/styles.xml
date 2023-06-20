@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Esse arquivo styles.xml é como se fosse um arquivo css -->
+<!-- A tag style seria algum elemento que será estilizado -->
+<!-- A tag item especifica o que será personalizado dentro desse elemento -->
+<resources>
+
+    <!-- A Tag name, é um nome qualquer que damos para esta estilização para usar la no arquivo de layout xml -->
+    <!-- A Tag parent, selecionamos o que vamos estilizar -->
+
+    <!-- Personalizando o alert -->
+    <style name="AlertDialogCustomTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Defina as propriedades desejadas para personalizar o AlertDialog -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/white</item>
+        <!-- Outras propriedades de estilo -->
+        <item name="android:windowBackground">@color/background_alert</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <!-- Cor da mensagem do alert -->
+    <style name="AlertDialogCustomTheme.MessageText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/white</item>
+        <!-- Outras propriedades de estilo para o texto da mensagem -->
+    </style>
+
+    <!-- Personalizando o edit text -->
+    <style name="EditTextCustomStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:textColorHint">@color/white</item>
+        <!-- Outras propriedades de estilo para o EditText -->
+    </style>
+
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema base do aplicativo -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Cor primária do aplicativo -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!-- Cor escura usada para barras de status e barras de navegação -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Cor de destaque usada para acentuar partes do aplicativo -->
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Outras configurações personalizadas do tema -->
+        <!-- Secondary brand color. -->
+<!--        <item name="colorSecondary">@color/white</item>-->
+<!--        <item name="colorSecondaryVariant">@color/white</item>-->
+<!--        <item name="colorOnSecondary">@color/white</item>-->
+        <!-- ... -->
+    </style>
+</resources>

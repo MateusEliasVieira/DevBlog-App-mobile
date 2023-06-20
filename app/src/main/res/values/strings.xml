@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">DevBlog</string>
+    <string name="novo">Novo</string>
+    <string name="categoria_web">Web</string>
+    <string name="categoria_mobile">Mobile</string>
+    <string name="categoria_tecnologias">Tecnologias</string>
+    <string name="categoria_curiosidades">Curiosidades</string>
+    <string name="categoria_duvidas">Dúvidas</string>
+    <string name="categoria_geral">Geral</string>
+    <string name="texto_cadastro">Publicar!</string>
+    <string name="campo_titulo">Título</string>
+    <string name="campo_conteudo">Conteúdo</string>
+    <string name="botao_salvar">Salvar</string>
+    <string name="texto_item_recycler_view">Continuar lendo...</string>
+    <string name="carregando_texto_item_recycler_view">Carregando...</string>
+</resources>
