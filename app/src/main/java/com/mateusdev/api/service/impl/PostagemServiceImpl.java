@@ -21,17 +21,19 @@ public class PostagemServiceImpl implements PostagemService {
 
     private List<Postagem> postagemList;
     private Postagem postagem;
+    private String token;
 
 
-    public PostagemServiceImpl() {
+    public PostagemServiceImpl(String token) {
         postagemList = new ArrayList<>();
         postagem = new Postagem();
+        this.token = token;
     }
 
     @Override
     public List<Postagem> carregarDadosDaAPIREST(PostagemAdapter postagemAdapter) {
 
-        ApiService.getInstance().obterPostagens().enqueue(new Callback<List<Postagem>>() {
+        ApiService.getInstancePostagem(token).obterPostagens().enqueue(new Callback<List<Postagem>>() {
             @Override
             public void onResponse(Call<List<Postagem>> call, Response<List<Postagem>> response) {
                 if (response.isSuccessful()) {
@@ -55,7 +57,7 @@ public class PostagemServiceImpl implements PostagemService {
 
     @Override
     public void salvarNovaPostagem(PostagemEnvio postagemEnvio, OnCompleteListener<Postagem> onCompleteListener) {
-        ApiService.getInstance().enviarPostagem(postagemEnvio).enqueue(new Callback<Postagem>() {
+        ApiService.getInstancePostagem(token).enviarPostagem(postagemEnvio).enqueue(new Callback<Postagem>() {
             @Override
             public void onResponse(Call<Postagem> call, Response<Postagem> response) {
                 postagem = response.body();

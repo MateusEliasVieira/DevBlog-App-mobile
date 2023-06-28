@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -29,11 +30,17 @@ public class MainActivity extends AppCompatActivity {
     private PostagemAdapter postagemAdapter;
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        this.token = intent.getStringExtra("token");
+        //Log.d("token",token);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Definindo cor branca no icone de menu da tela na toolbar
@@ -73,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
                 return true;
             }
 
@@ -88,7 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void adicionarEventoFloatActionButton() {
         button.setOnClickListener(click -> {
-            startActivity(new Intent(MainActivity.this, CadastroPostagemActivity.class));
+            Intent intent = new Intent(MainActivity.this, CadastroPostagemActivity.class);
+            intent.putExtra("token",this.token);
+            startActivity(intent);
         });
     }
 
@@ -96,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                postagemAdapter.update(new PostagemServiceImpl().carregarDadosDaAPIREST(postagemAdapter));
+                postagemAdapter.update(new PostagemServiceImpl(token).carregarDadosDaAPIREST(postagemAdapter));
             }
         }).run();
 

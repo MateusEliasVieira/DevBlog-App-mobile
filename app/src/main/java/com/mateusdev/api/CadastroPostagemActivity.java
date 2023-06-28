@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class CadastroPostagemActivity extends AppCompatActivity {
     private PostagemService postagemService;
     private Postagem postagem;
     private Thread thread;
+    private String token;
 
 
     @Override
@@ -36,7 +38,10 @@ public class CadastroPostagemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_postagem);
 
-        postagemService = new PostagemServiceImpl();
+        Intent intent = getIntent();
+        this.token = intent.getStringExtra("token");
+
+        postagemService = new PostagemServiceImpl(token);
         postagem = new Postagem();
 
         editTextTitulo = findViewById(R.id.editTextTituloPostagem);
@@ -60,7 +65,7 @@ public class CadastroPostagemActivity extends AppCompatActivity {
             toolbar.setOverflowIcon(overflowIcon);
         }
 
-        adicionaeEventoBotao();
+        adicionarEventoBotao();
     }
 
     @Override
@@ -77,7 +82,7 @@ public class CadastroPostagemActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void adicionaeEventoBotao() {
+    private void adicionarEventoBotao() {
         buttonCadastrarPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
