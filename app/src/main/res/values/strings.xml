@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name">DevBlog</string>
+    <string name="app_name">BlogDev</string>
     <string name="novo">Novo</string>
+    <string name="usuario">Usuário</string>
+    <string name="senha">Senha</string>
+    <string name="entrar">Entrar</string>
+    <string name="cadastrese">Cadastre-se</string>
     <string name="categoria_web">Web</string>
     <string name="categoria_mobile">Mobile</string>
     <string name="categoria_tecnologias">Tecnologias</string>
@@ -13,4 +17,14 @@
     <string name="botao_salvar">Salvar</string>
     <string name="texto_item_recycler_view">Continuar lendo...</string>
     <string name="carregando_texto_item_recycler_view">Carregando...</string>
+
+    <string-array name="categorias">
+        <item>Web</item>
+        <item>Mobile</item>
+        <item>Tecnologias</item>
+        <item>Curiosidades</item>
+        <item>Dúvidas</item>
+        <item>Geral</item>
+    </string-array>
+
 </resources>

@@ -8,4 +8,5 @@
     <color name="colorAccent">@color/white</color>
     <color name="background_alert">#383659</color>
     <color name="verde_agua">#32B8A7</color>
+    <color name="azul_claro">#3a9dd6</color>
 </resources>

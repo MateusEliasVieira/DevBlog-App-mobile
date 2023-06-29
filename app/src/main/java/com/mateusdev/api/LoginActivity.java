@@ -56,18 +56,17 @@ public class LoginActivity extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 if (token != null) {
                                     Log.d("token", token);
-                                    // Resto do código...
+                                    // obtivemos um token válido
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    intent.putExtra("token", token);
+                                    startActivity(intent);
+                                    finish();
                                 } else {
                                     Log.d("token", "Token nulo");
                                     // Lógica de tratamento caso o token seja nulo...
                                 }
-                                // obtivemos um token válido
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                intent.putExtra("token", token);
-                                startActivity(intent);
-                                finish();
                             }else{
-                                Log.d("token", "não foi sucesso");
+                                Log.d("token", "problema ao realizar autenticação");
                             }
 
                         }

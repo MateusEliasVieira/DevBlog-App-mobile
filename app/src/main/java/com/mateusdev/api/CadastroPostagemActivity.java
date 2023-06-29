@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,6 +26,7 @@ import com.mateusdev.api.service.impl.PostagemServiceImpl;
 public class CadastroPostagemActivity extends AppCompatActivity {
 
     private EditText editTextTitulo;
+    private Spinner spinnerCategoriaPostagem;
     private EditText editTextConteudo;
     private Button buttonCadastrarPost;
     private PostagemService postagemService;
@@ -45,6 +47,7 @@ public class CadastroPostagemActivity extends AppCompatActivity {
         postagem = new Postagem();
 
         editTextTitulo = findViewById(R.id.editTextTituloPostagem);
+        spinnerCategoriaPostagem = findViewById(R.id.spinnerCategoriaPostagem);
         editTextConteudo = findViewById(R.id.editTextConteudoPostagem);
         buttonCadastrarPost = findViewById(R.id.buttonSalvarNovaPostagem);
 
@@ -88,6 +91,7 @@ public class CadastroPostagemActivity extends AppCompatActivity {
             public void onClick(View v) {
                 PostagemEnvio postagemEnvio = new PostagemEnvio();
                 postagemEnvio.setTitulo(editTextTitulo.getText().toString());
+                postagemEnvio.setCategoria(spinnerCategoriaPostagem.getSelectedItem().toString());
                 postagemEnvio.setConteudo(editTextConteudo.getText().toString());
 
                 postagemService.salvarNovaPostagem(postagemEnvio, new OnCompleteListener<Postagem>() {
@@ -95,7 +99,7 @@ public class CadastroPostagemActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Postagem> task) {
                         if (task.isSuccessful()) {
                             postagem = task.getResult();
-                            alert("Sucesso", "Nova postagem " + postagem.getConteudo() + " cadastrada com sucesso!", "OK");
+                            alert("Sucesso", "Post (" + postagem.getTitulo() + ") cadastrado com sucesso!", "OK");
                         } else {
                             alert("Aviso", "Falha ao salvar nova postagem!", "OK");
                         }

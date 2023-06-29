@@ -46,7 +46,7 @@ public class PostagemAdapter extends RecyclerView.Adapter<PostagemAdapter.MeuVie
         Date data = postagemList.get(position).getDataPostagem();
         SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
         String dataFormatada = formatador.format(data);
-        holder.textViewDataPost.setText("Postado em "+dataFormatada);
+        holder.textViewDataPost.setText("@"+postagemList.get(position).getAutor().split(" ")[0]+" em "+dataFormatada);
     }
 
     @Override

@@ -8,6 +8,7 @@ public class Postagem {
     private String titulo;
     private String conteudo;
     private Date dataPostagem = new Date();
+    private String autor;
 
     public int getId() {
         return id;
@@ -39,5 +40,13 @@ public class Postagem {
 
     public void setDataPostagem(Date dataPostagem) {
         this.dataPostagem = dataPostagem;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 }
