@@ -8,6 +8,7 @@ public class ApiService {
 
     public static PostagemServiceEndpoints INSTANCE_POSTAGEM = null;
     public static UsuarioServiceEndpoints INSTANCE_USUARIO = null;
+    private static final String BASE_URL = "http://192.168.0.174:8080/";
 
     public static PostagemServiceEndpoints getInstancePostagem(String token) {
         OkHttpClient httpClient = new OkHttpClient.Builder()
@@ -16,7 +17,7 @@ public class ApiService {
 
         if (INSTANCE_POSTAGEM == null) {
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://192.168.0.106:8080/")
+                    .baseUrl(BASE_URL)
                     .client(httpClient) // adicionamos o objeto httpClient (no qual nessa parte já possui o header modificado com o token) ao retrofit
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
@@ -29,7 +30,7 @@ public class ApiService {
 
         if (INSTANCE_USUARIO == null) {
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://192.168.0.106:8080/")
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             INSTANCE_USUARIO = retrofit.create(UsuarioServiceEndpoints.class); // cria uma instancia no qual implementa a interface de serviço definida. Dessa forma podemos usar para acessar os endpoints da api

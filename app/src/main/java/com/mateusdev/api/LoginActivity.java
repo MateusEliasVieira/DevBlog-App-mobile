@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.mateusdev.api.model.LoginEnvio;
 import com.mateusdev.api.service.UsuarioService;
 import com.mateusdev.api.service.impl.UsuarioServiceImpl;
@@ -21,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextUsuario;
     private EditText editTextSenha;
     private Button buttonLogin;
+    private Button buttonCadastrese;
     private UsuarioService usuarioService;
 
     @Override
@@ -33,8 +36,10 @@ public class LoginActivity extends AppCompatActivity {
         editTextUsuario = findViewById(R.id.editTextUsuario);
         editTextSenha = findViewById(R.id.editTextSenha);
         buttonLogin = findViewById(R.id.buttonLogin);
+        buttonCadastrese = findViewById(R.id.buttonCadastrese);
 
         adicionarEventoBotaoLogin();
+        adicionarEventoBotaoCadastrese();
     }
 
     private void adicionarEventoBotaoLogin() {
@@ -52,29 +57,51 @@ public class LoginActivity extends AppCompatActivity {
                     usuarioService.fazerLogin(loginEnvio, new OnCompleteListener<String>() {
                         @Override
                         public void onComplete(@NonNull Task<String> task) {
-                            String token = task.getResult();
                             if(task.isSuccessful()){
-                                if (token != null) {
-                                    Log.d("token", token);
+                                String token = task.getResult();
+                                if (token != null && !token.equals("ERRO") && !token.equals("Login inválido")) {
                                     // obtivemos um token válido
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     intent.putExtra("token", token);
                                     startActivity(intent);
                                     finish();
                                 } else {
-                                    Log.d("token", "Token nulo");
-                                    // Lógica de tratamento caso o token seja nulo...
+                                    if(token.equals("Login inválido")){
+                                        msgSnackbar("Login inválido!");
+                                    }else{
+                                        // token = null ou token ="ERRO"
+                                        msgSnackbar("Falha ao realizar autenticação!");
+                                    }
                                 }
                             }else{
-                                Log.d("token", "problema ao realizar autenticação");
+                                msgSnackbar("Verifique sua conexão com a internet!");
                             }
 
                         }
+
+
                     });
                 } else {
                     // mensagem alert
+                    msgSnackbar("Informe o usuário e senha!");
                 }
             }
         });
+    }
+
+    private void adicionarEventoBotaoCadastrese(){
+        buttonCadastrese.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, CriarContaActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void msgSnackbar(String texto){
+        Snackbar snackbar = Snackbar.make(LoginActivity.this.getCurrentFocus(),texto, Snackbar.LENGTH_LONG);
+        snackbar.setBackgroundTint(Color.RED);
+        snackbar.show();
     }
 }

@@ -1,10 +1,15 @@
 <resources>
     <string name="app_name">BlogDev</string>
     <string name="novo">Novo</string>
+    <string name="nome">Nome</string>
+    <string name="nome_usuario">Nome de usuário</string>
+    <string name="email">Email</string>
+    <string name="confirma_senha">Confirme a senha</string>
     <string name="usuario">Usuário</string>
     <string name="senha">Senha</string>
     <string name="entrar">Entrar</string>
     <string name="cadastrese">Cadastre-se</string>
+    <string name="cadastrar">Cadastrar</string>
     <string name="categoria_web">Web</string>
     <string name="categoria_mobile">Mobile</string>
     <string name="categoria_tecnologias">Tecnologias</string>

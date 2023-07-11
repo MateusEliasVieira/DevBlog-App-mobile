@@ -4,6 +4,9 @@ import com.mateusdev.api.model.LoginEnvio;
 import com.mateusdev.api.model.Postagem;
 import com.mateusdev.api.model.PostagemEnvio;
 import com.mateusdev.api.model.TokenModel;
+import com.mateusdev.api.model.Usuario;
+import com.mateusdev.api.model.UsuarioEnvio;
+import com.mateusdev.api.model.UsuarioResposta;
 
 import java.util.List;
 
@@ -16,5 +19,7 @@ public interface UsuarioServiceEndpoints {
 
     @POST("/login/logar")
     public Call<TokenModel> login(@Body LoginEnvio loginEnvio);
+    @POST("/user/new")
+    public Call<UsuarioResposta> cadastrarUsuario(@Body UsuarioEnvio usuarioEnvio);
 
 }

@@ -4,14 +4,12 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Tasks;
-import com.google.gson.Gson;
 import com.mateusdev.api.data.network.ApiService;
 import com.mateusdev.api.model.LoginEnvio;
-import com.mateusdev.api.model.Postagem;
 import com.mateusdev.api.model.TokenModel;
+import com.mateusdev.api.model.UsuarioEnvio;
+import com.mateusdev.api.model.UsuarioResposta;
 import com.mateusdev.api.service.UsuarioService;
-
-import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,5 +36,27 @@ public class UsuarioServiceImpl implements UsuarioService {
         });
 
     }
+
+    @Override
+    public void cadastrarNovoUsuario(UsuarioEnvio usuarioEnvio, OnCompleteListener<String> onCompleteListener) {
+        ApiService.getInstanceUsuario().cadastrarUsuario(usuarioEnvio).enqueue(new Callback<UsuarioResposta>() {
+            @Override
+            public void onResponse(Call<UsuarioResposta> call, Response<UsuarioResposta> response) {
+                if(response.isSuccessful()){
+                    if(response.body().getStatus() != null){
+                        onCompleteListener.onComplete(Tasks.forResult(response.body().getStatus()));
+                    }else{
+                        onCompleteListener.onComplete(Tasks.forResult("Houve uma falha!"));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UsuarioResposta> call, Throwable t) {
+                onCompleteListener.onComplete(Tasks.forResult(t.getMessage()));
+            }
+        });
+    }
+
 
 }
